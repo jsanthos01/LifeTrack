@@ -39,8 +39,6 @@ submitUserBtn.addEventListener("click", async (e) => {
         password: password.value
     }
 
-    console.log(databaseStorage)
-
     let storedInfo = await fetch('/api/registration', 
     {
         method: "POST",
@@ -49,9 +47,7 @@ submitUserBtn.addEventListener("click", async (e) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(databaseStorage)
-    })
-
-    // let storedInfo = await $.post( '/api/registration', databaseStorage );
+    }).then(res => res.json())
 
     alert( storedInfo.message );
     if( storedInfo.message ){
