@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Dashboard</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://use.fontawesome.com/4b53ea2f0f.js"></script>
+    <!-- <link href="https://fonts.googleapis.com/css?family=PT+Serif|Raleway:400,700,800|Karla&display=swap" rel="stylesheet">         -->
+    <link href="https://fonts.googleapis.com/css?family=Karla|Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/individual.css">
+
+
+</head>
+<body>
+  <script src="js/individual.js"></script>
+
+  
+  <div class="navBar d-flex justify-content-end" id="visitingNavBar">
+    <div id="addInfoWin" class="window container-fluid hide card-body">
+      <div class="d-flex justify-content-end">
+        <i class="fa fa-times" onClick="hideAddInfo()" aria-hidden="true"></i>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="card mt-4 col-8">
+          <form class="card-body">
+            <h3>Add your Information</h3>
+            <div class="form-group">
+              <label for="profileImg">Add Profile Image</label>
+              <input type="text" class="form-control" id="profileImg" placeholder="Add image url">
+            </div>
+            <div class="form-group">
+              <label for="insertWeight">Weight</label>
+              <input type="text" class="form-control" id="insertWeight" placeholder="Insert Your Current Weight in kg">
+            </div>
+            <div class="form-group">
+              <label for="insertHeight">Height</label>
+              <input type="text" class="form-control" id="insertHeight" placeholder="Insert Your Current Height in meters">
+            </div>
+            <div class="form-group">
+              <label for="insertGoal">Goal</label>
+              <input type="text" class="form-control" id="insertGoal" placeholder="Insert how much kg you want to loose. Make sure it is a number!">
+            </div>
+            <button type="button" class="btn btn-primary" onClick="insertInfo()">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="editInfoWin" class="window container-fluid hide card-body">
+      <div class="d-flex justify-content-end">
+        <i class="fa fa-times" onClick="hideEditInfo()" aria-hidden="true"></i>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="card mt-4 col-8">
+          <form class="card-body">
+            <h3>Edit your Information</h3>
+            <div class="form-group">
+              <label for="editProfileImg">Edit Profile Image</label>
+              <input type="text" class="form-control" id="editProfileImg" placeholder="Edit image url">
+            </div>
+            <div class="form-group">
+              <label for="editWeight">Weight</label>
+              <input type="text" class="form-control" id="editWeight" placeholder="Insert Your Current Weight in kg">
+            </div>
+            <div class="form-group">
+              <label for="editHeight">Height</label>
+              <input type="text" class="form-control" id="editHeight" placeholder="Insert Your Current Height in meters">
+            </div>
+            <div class="form-group">
+              <label for="editGoal">Goal</label>
+              <input type="text" class="form-control" id="editGoal" placeholder="Insert how much kg you want to loose. Make sure it is a number">
+            </div>
+            <button class="btn btn-primary" type="button" id="editButton" onclick="editInfo()">Submit</button>
+           </form>
+        </div>
+      </div>
+    </div>
+    <div class="navMenu col-lg-3 card hide" id="navMenu">
+      <ul class="card-body text-center">
+        <div class="text-right" id="menuCloseBtn">
+          <i class="fa fa-times" onClick="hideMenu()" aria-hidden="true"></i>
+        </div>
+        <div class="thumbProfileimg">
+          <img src="assets/download.png" alt="" class="profilePicture m-2 " style="width: 75px; height: 75px;">
+        </div>
+        <li class="navItem"><a class="navLink" onClick="showAddInfo()" >Add Info</a></li>
+        <li class="navItem"><a class="navLink" onClick="showEditInfo()" >Edit Info</a></li>
+        <li class="navItem"><a class="navLink" href="groups.html" >View Groups</a></li>
+        <li class="navItem"><a class="navLink" onClick="logOutBtn()">Log Out</a></li>
+      </ul>
+    </div>
+    <div class="menuProImg thumbProfileimg" onClick="showMenu()" >
+      <img src="assets/download.png" alt="" class="profilePicture m-2 " style="width: 50px; height: 50px;">
+    </div>
+  </div>
+  
+  <main role="main">
+    <section class="jumbotron2">
+      <div class="col4 proImgBckg" id="userProfilePicture">
+        <img src="assets/download.png" alt="" class="profilePictureBig">
+      </div>
+      <div class="col8 userInfo ">
+          <h1 class="tex-center" id="h1Value">Welcome!</h1>
+          <ul class="mx-auto profileInfo">
+            <li class="" id="appendWeight">Weight: </li>
+            <br>
+            <li class="" id="appendHeight">Height</li>
+            <br>
+            <li class="" id="appendBMI">BMI</li>
+            <br>
+          </ul>
+      </div>
+    </section>
+    <section class="container">
+      <p id="usersMainGoal" >My goal is to do .....!</div>
+    </section>
+    <section class="container allThumbNails" id="thumbnailList">
+      <div class="card-deck" >
+        <div class="card" id="goalThumbnail" onclick="showGoalCard()">
+          <div class="card-body d-flex justify-content-around">
+              <h5 class="card-title">Mini Goals</h5>
+              <img src="assets/goal.png" style="width: 80%;" alt="">
+          </div>
+        </div>
+        <div class="card" id="dietThumbnail" onclick="showDietCard()">
+          <div class="card-body d-flex justify-content-around">
+              <h5 class="card-title">Diet</h5>
+              <img src="assets/diet.png" style="width: 80%;" alt="">
+          </div>
+        </div>
+        <div class="card" id="fitnessThumbnail" onclick="showfitnessCard()">
+          <div class="card-body border-primary d-flex justify-content-around">
+              <h5 class="card-title">Fitness</h5>
+              <img src="assets/dumbbell.png" style="width: 80%;" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="goal container mt-4 hide" id="goalCard">
+      <div class="card card-body goalSection">
+        <div class="card-body text-right disableCrossBtn">
+          <i class="fa fa-times" onClick="hidegoalCard()" aria-hidden="true"></i>
+        </div>
+        <div class="card-body d-flex justify-content-between" id="visitorGoalBar">
+          <h3><img src="assets/individualPg/mission.png" alt=""> Mini Goals</h3>
+          <div class="navBAr">
+            <ul class="nav justify-content-end">
+              <li class="nav-item"><button class="nav-link btn btn-outline-warning" onClick="addGoalInfo()"><i class="fa fa-plus-circle" aria-hidden="true"></i>  Add goal</button></li>
+            </ul>
+          </div>
+        </div>
+        <div id="addGoalInsideCard">
+        </div>
+          <div class="card-body">
+            <div class="card card-body mb-3">
+              <div class="row">
+                <h3 class="col-11"><img src="assets/individualPg/monday.png" alt="" style="width: 25px;"> Daily</h3>
+                <h3 class="col-1" id="showHideDaily"><i class="fa fa-angle-down" aria-hidden="true" onClick="showDailyList()"></i></h3>
+              </div>
+              <hr>
+              <div class="row detailDailyList hide">
+                <div class="col-lg-8" >
+                  <div class="card-deck" id="dailyGoals">
+                  </div>
+                </div>
+                <div class="col-lg-4" id="completedDailyGoals" style="border-left: outset;">
+                  <h5><img src="assets/individualPg/list.png" alt=""> Completed Tasks</h5>
+                  <hr>
+                  <div class="card-body" id="appendCompltedDailyGoal">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-body mb-3">
+              <div class="row">
+                <h3 class="col-11"><img src="assets/individualPg/calendar.png" alt="" style="width: 25px;"> Weekly</h3>
+                <h3 class="col-1" id="showHideWeekly"><i class="fa fa-angle-down" aria-hidden="true" onClick="showWeeklyList()"></i></h3>
+              </div>
+              <hr>
+              <div class="row detailWeeklyList hide">
+                <div class="col-lg-8" >
+                  <div class="card-deck" id="weeklyGoals">
+                  </div>
+                </div>
+                <div class="col-lg-4" id="completedWeeklyGoals" style="border-left: outset;">
+                  <h5><img src="assets/individualPg/list.png" alt=""> Completed Tasks</h5>
+                  <hr>
+                  <div class="card-body" id="appendCompltedWeeklyGoal">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-body mb-3">
+              <div class="row">
+                <h3 class="col-11"><img src="assets/individualPg/monthly.png" alt="" style="width: 25px;"> Monthly</h3>
+                <h3 class="col-1" id="showHideMonthly"><i class="fa fa-angle-down" aria-hidden="true" onClick="showMonthlyList()"></i></h3>
+              </div>
+              <hr>
+              <div class="row detailMonthlyList hide">
+                <div class="col-lg-8" >
+                  <div class="card-deck" id="monthlyGoals">
+                  </div>
+                </div>
+                <div class="col-lg-4" id="completedMonthlyGoals" style="border-left: outset;">
+                  <h5><img src="assets/individualPg/list.png" alt=""> Completed Tasks</h5>
+                  <hr>
+                  <div class="card-body" id="appendCompltedMonthlyGoal">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="card mt-4">
+              <div class="card-body ">
+                <h3><img src="assets/monthly.png" alt="">Monthly</h3>
+                <div class="card-deck" id="monthlyGoals">
+                </div>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </section>
+    <section class="diet container mt-4 hide" id="dietCard">
+      <div class="card">
+        <div class="nav-link card-body d-flex justify-content-end" href=""><i class="fa fa-times" onClick="hideDietCard()" aria-hidden="true"></i></div>
+        <div class="dietSection card-body">
+          <h3>Diet</h3>
+          <h4 id="addDietName">Current Diet you are following: keto</h4>
+          <div class="input-group mb-3">
+            <select class="custom-select" id="inputGroupSelectDiet" onchange="recipeCall()">
+              <option>Choose a Diet</option>
+              <option value="Paleo">The Paleo Diet</option>
+              <option value="Vegan">The Vegan Diet</option>
+              <option value="Low Carb ">Low-Carb Diets</option>
+               <option value="Ultra Low Fat">The Ultra-Low-Fat Diet</option>
+              <option value="Atkins">The Atkins Diet</option>
+              <option value="Zone">The Zone Diets</option>
+            </select>
+            <div class="input-group-append">
+              <label class="input-group-text" for="inputGroupSelectDiet">Options</label>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h3>Top Recipes</h3>
+              <div class="card-deck" id="dietSections">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="diet container mt-4 hide" id="fitnessCard">
+      <div class="card">
+        <div class="nav-link card-body d-flex justify-content-end" href="">
+          <i class="fa fa-times" onClick="hidefitnessCard()" aria-hidden="true"></i>
+        </div>
+        <div class="card-body">
+          <h2>Fitness</h2>
+          <div class="card-body">
+            <h5 id="currentFitness">Fitness Regime: </h5>
+            <br>
+            <div class="input-group mb-3">
+              <select class="custom-select" id="inputGroupSelectFitness" onchange="fitnessWorkoutCall()">
+                <option>Choose a Fitness Regime</option>
+                <option value="Abs">Exercises For Abs</option>
+                <option value="Arms">Exercises For Arms</option>
+                <option value="Back">Exercises For Back</option>
+                <option value="Calves">Exercises For Calves</option>
+                <option value="Chest">Exercises For Chest</option>
+                <option value="Legs">Exercises For Legs</option>
+              </select>
+              <div class="input-group-append">
+                <label class="input-group-text" for="inputGroupSelectFitness">Options</label>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h3>Top Workout Exercises</h3>
+              <div class="card-deck" id="fitnessSections">
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="container d-flex justify-content-around">
+    <div>
+      Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>      
+    </div>
+  </footer>
+</body>
+</html>

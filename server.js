@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //posts user's registration information inside database
-app.post("/api/registration", async function(req, res){    
+app.post("/api/registration", async (req, res) => {    
     bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
         // Store hash in your password DB.
         const data = {
@@ -21,9 +21,21 @@ app.post("/api/registration", async function(req, res){
             password: hash
         }
 
-        let registered = await orm.registerDb(data);
+        const registered = await orm.registerDb(data);
         registered ? res.send({message: "Success!"}) : null ;
     });
+});
+
+app.post("/api/login", async (req, res) => {
+    const userData = await orm.loginUser(req.body.email)
+    console.log("userDate", userData.password)
+    bcrypt.compare(req.body.password, userData.password, function (err, result) {
+        if (result == true) {
+          res.send(userData);
+        } else{
+            res.send({ error: 'Sorry unknown user or wrong password' } );
+        }
+      });
 })
 
 app.listen(PORT, function () {
