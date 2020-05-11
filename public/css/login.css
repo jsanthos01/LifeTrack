@@ -1,0 +1,96 @@
+html {
+    height:100%;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Karla', sans-serif;    
+    background: rgb(218, 27, 27); /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #c04848, #480048); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #c04848, #480048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .login {
+    width: 80%;
+    margin: 60px auto;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  }
+  .image {
+    width: 100%;
+    height: 400px;
+    background: url(../assets/index/login.jpg);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-size: cover;
+    box-sizing: border-box;
+    background-position-y: -100px;
+
+  }
+  .textSection {
+    width: 100%;
+    height: 400px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .formBox{
+    width: 100%;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    height: 400px;
+  }
+  .formBox p{
+    font-weight: bold;
+    color: rgb(255, 115, 0);
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  .formBox input {
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 2px solid black;
+    height: 40px;
+    outline: none;
+  }
+
+  .formBox input:focus {
+    border-bottom: purple;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .login{
+    flex-direction: column;
+    
+  }
+
+  .image {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0;
+
+  }
+  
+  .textSection {
+    width: 100%;
+    height: 400px;
+    
+  }
+}
+@media only screen and (max-width: 450px) {
+  .textSection {
+    width: 100%;
+    height: 400px;
+    
+  }
+  .image {
+    width: 100%;
+    height: 250px;
+    
+  }
+  .formBox{
+    padding: 40px 40px;
+  }
+}
